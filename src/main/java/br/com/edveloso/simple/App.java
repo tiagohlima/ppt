@@ -7,6 +7,8 @@ import java.io.*;
  */
 public class App 
 {	
+    private static int PEDRA = 1, PAPEL = 2, TESOURA =3;
+
     public static void main( String[] args ) throws IOException
     {
 
@@ -37,15 +39,15 @@ public class App
 			String resultado = new String();
 	        switch(codigo){
 	        	case 1:
-	        		resultado = new Pedra(codOponente).getResultado();
+	        		resultado = getResultadoPedra(codOponente);
 	        		System.out.println(resultado);		        		
 	        		break;
 	        	case 2:
-	        		resultado = new Papel(codOponente).getResultado();
+	        		resultado = getResultadoPapel(codOponente);
 	        		System.out.println(resultado);		        		
 	        		break;	        		
 	        	case 3:
-	        		resultado = new Tesoura(codOponente).getResultado();
+	        		resultado = getResultadoTesoura(codOponente);
 	        		System.out.println(resultado);		        			        		
 	        		break;
 
@@ -63,4 +65,41 @@ public class App
 
 
     }
+
+	public static String getResultadoPapel(int codOponente){
+		 if(PEDRA == codOponente){
+		   	System.out.println("Papel embrulha a pedra!");
+		   	  return "Eu venci!";
+		   }
+		   if(TESOURA == codOponente){
+		   	  System.out.println("Tesoura corta papel!");
+		   	 return "Eu perdi!";
+		   }
+		   return "empate";
+	}
+
+    public static String getResultadoPedra(int codOponente){
+	   if(TESOURA == codOponente){
+	   	  System.out.println("A pedra quebra a tesoura!");
+	   	  return "Eu venci!";
+	   }
+	   if(PAPEL == codOponente){
+	   	System.out.println("O papel embrulha a pedra!");
+	   	 return "Eu perdi!";
+	   }
+	   return "empate";
+	}
+
+	public static String getResultadoTesoura(int codOponente){
+	   if(PAPEL == codOponente){
+	   	  System.out.println("Tesoura corta papel!");
+	   	  return "Eu venci!";
+	   }
+	   if(PEDRA == codOponente){
+	   	System.out.println("A pedra quebra a tesoura!");
+	   	 return "Eu perdi!";
+	   }
+	   return "empate";
+	}
+
 }
